@@ -34,8 +34,13 @@
 
           <div class="type_msg">
             <div class="input_msg_write">
-              <input type="text" id="chat-outgoing-msg" class="write_msg" placeholder="Type a message" />
-              <button type="button" id="chat-send" class="msg_send_btn">
+              <input type="text"
+                     id="chat-outgoing-msg"
+                     class="write_msg"
+                     placeholder="Type a message"
+                     @keydown="sendChat"
+              />
+              <button type="button" id="chat-outgoing-btn" class="msg_send_btn" @click="sendChat">
                 <i class="fa fa-paper-plane" aria-hidden="true" />
               </button>
             </div>
@@ -49,7 +54,21 @@
 <script>
 export default {
   name: 'Chat',
+  data() {
+    return {
 
+    }
+  },
+  methods: {
+    sendChat: (e) => {
+      if(e.keyCode === 13 || e.type === 'click') {
+        let chatBox = document.querySelector('#chat-box');
+        let chatOutgoingBox = document.createElement('div');
+        chatOutgoingBox.innerHTML = 'hello';
+        chatBox.append(chatOutgoingBox);
+      }
+    }
+  }
 }
 </script>
 
@@ -78,7 +97,7 @@ body {
   background-color: #f8f9fa!important;
   width: 100%;
   padding: 10px;
-  border: 5px solid #716d6d;
+  border-bottom: 5px solid #716d6d;
 }
 
 .chat_section {
@@ -156,8 +175,9 @@ body {
   height: 33px;
   position: absolute;
   right: 0;
-  top: 11px;
+  top: 8px;
   width: 33px;
+  margin-right: 5px;
 }
 .messaging {
   padding: 0 0 50px 0;
