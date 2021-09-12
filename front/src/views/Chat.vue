@@ -8,7 +8,7 @@
             <img src="../assets/profile.png" class="mr-3 rounded-circle" alt="profile" />
             &nbsp;&nbsp; Hyunjoo Lee
           </div>
-          <div id="chat-box" class="container-fluid chat_section">
+          <div id="chat-box" ref="chatBox" class="container-fluid chat_section">
             <!-- 받은 메시지 시작 -->
             <div class="incoming_msg">
               <div class="received_msg">
@@ -29,6 +29,7 @@
                 <span class="time_date"> 11:18 | Today</span>
               </div>
             </div>
+            <sent-msg v-for="(msg, i) in msgs" :key="i"></sent-msg>
             <!-- 보낸 메시지 끝 -->
           </div>
 
@@ -52,20 +53,24 @@
 </template>
 
 <script>
+import SentMsg from '@/components/SentMsg';
+
 export default {
   name: 'Chat',
+  components: {
+    SentMsg
+  },
   data() {
     return {
-
+      msgs: []
     }
   },
+  mounted() {
+  },
   methods: {
-    sendChat: (e) => {
+    sendChat(e) {
       if(e.keyCode === 13 || e.type === 'click') {
-        let chatBox = document.querySelector('#chat-box');
-        let chatOutgoingBox = document.createElement('div');
-        chatOutgoingBox.innerHTML = 'hello';
-        chatBox.append(chatOutgoingBox);
+        this.msgs.push('msg');
       }
     }
   }
