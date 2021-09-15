@@ -1,7 +1,7 @@
 <template>
   <div class="outgoing_msg">
     <div class="sent_msg">
-      <p>안녕</p>
+      <p>{{inputMsg}}</p>
       <span class="time_date"> 11:18 | Today</span>
     </div>
   </div>
@@ -9,7 +9,20 @@
 
 <script>
 export default {
-  name: "SentMsg"
+  name: "SentMsg",
+  props: {
+    msg: String
+  },
+  data() {
+    return {
+      inputMsg: ''
+    }
+  },
+  mounted() {
+    this.inputMsg += this.msg;
+  },
+  methods: {
+  }
 }
 </script>
 

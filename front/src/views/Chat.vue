@@ -22,29 +22,15 @@
             <!-- 받은 메시지 끝 -->
 
             <!-- 보낸 메시지 시작 -->
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when
-                  the real text is not </p>
-                <span class="time_date"> 11:18 | Today</span>
-              </div>
-            </div>
-            <sent-msg v-for="(msg, i) in msgs" :key="i"></sent-msg>
+            <br v-if="msgs.length === 0" />
+            <sent-msg v-if="msgs.length > 0"
+                      v-for="(msg, i) in msgs"
+                      :key="i"
+                      :msg="msg">
+            </sent-msg>
             <!-- 보낸 메시지 끝 -->
-          </div>
 
-          <div class="type_msg">
-            <div class="input_msg_write">
-              <input type="text"
-                     id="chat-outgoing-msg"
-                     class="write_msg"
-                     placeholder="Type a message"
-                     @keydown="sendChat"
-              />
-              <button type="button" id="chat-outgoing-btn" class="msg_send_btn" @click="sendChat">
-                <i class="fa fa-paper-plane" aria-hidden="true" />
-              </button>
-            </div>
+            <message-form @sendChat="sendChat"></message-form>
           </div>
         </div>
       </div>
@@ -54,24 +40,26 @@
 
 <script>
 import SentMsg from '@/components/SentMsg';
+import MessageForm from '@/components/MessageForm';
 
 export default {
   name: 'Chat',
   components: {
+    MessageForm,
     SentMsg
   },
   data() {
     return {
-      msgs: []
+      msgs: [],
+      childMsg: '',
+      message: ''
     }
   },
   mounted() {
   },
   methods: {
-    sendChat(e) {
-      if(e.keyCode === 13 || e.type === 'click') {
-        this.msgs.push('msg');
-      }
+    sendChat(msg) {
+      this.msgs.push(msg);
     }
   }
 }
@@ -148,14 +136,6 @@ body {
   padding: 5px 10px 5px 12px;
   width: 100%;
 }
-.sent_msg {
-  float: right;
-  width: 60%;
-}
-.outgoing_msg {
-  overflow: hidden;
-  margin: 26px 0 26px;
-}
 .input_msg_write input {
   background: rgba(0,0,0,0) none repeat scroll 0 0;
   border: medium none;
@@ -166,24 +146,6 @@ body {
   padding: 10px;
 }
 
-.type_msg {
-  border-top: 1px solid #c4c4c4;
-  position: relative;
-}
-.msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
-  border: medium none;
-  border-radius: 50%;
-  color: #fff;
-  cursor: pointer;
-  font-size: 17px;
-  height: 33px;
-  position: absolute;
-  right: 0;
-  top: 8px;
-  width: 33px;
-  margin-right: 5px;
-}
 .messaging {
   padding: 0 0 50px 0;
 }
