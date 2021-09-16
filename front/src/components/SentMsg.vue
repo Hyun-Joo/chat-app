@@ -20,13 +20,6 @@ export default {
   },
   mounted() {
     this.inputMsg += this.msg;
-
-    const eventSource = new EventSource('/sender/hyunjoo/receiver/joveticeight');
-    eventSource.onmessage = (e) => {
-      console.log(1, e);
-      const data = JSON.parse(e.data);
-      console.log(2, data);
-    }
   },
   methods: {
   }

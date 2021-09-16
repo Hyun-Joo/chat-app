@@ -12,6 +12,9 @@ export default {
   name: 'App',
   components: {
     Chat
+  },
+  mounted() {
+    this.$store.dispatch('getSentMessages');
   }
 }
 </script>

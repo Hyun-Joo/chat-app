@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import SentMsg from '@/components/SentMsg';
 import MessageForm from '@/components/MessageForm';
 
@@ -50,13 +51,14 @@ export default {
   },
   data() {
     return {
-      msgs: [],
       childMsg: '',
       message: ''
     }
   },
-  mounted() {
+  computed: {
+    ...mapState(['msgs'])
   },
+  mounted() {},
   methods: {
     sendChat(msg) {
       this.msgs.push(msg);
