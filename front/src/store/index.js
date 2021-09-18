@@ -12,8 +12,8 @@ const store = new Vuex.Store({
          const eventSource = new EventSource('/sender/hyunjoo/receiver/joveticeight');
          eventSource.onmessage = (e) => {
             const data = JSON.parse(e.data);
-            console.log(data.createdAt);
-            this.state.msgs.push(data.msg);
+            const createdAt = data.createdAt ?? '2021-09-01';
+            this.state.msgs.push({text: data.msg, time: createdAt});
          }
       }
    }

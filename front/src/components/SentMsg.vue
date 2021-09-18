@@ -1,27 +1,51 @@
 <template>
   <div class="outgoing_msg">
     <div class="sent_msg">
-      <p>{{inputMsg}}</p>
-      <span class="time_date"> 11:18 | Today</span>
+      <p>{{inputMsg.msg}}</p>
+      <span class="time_date"> {{inputMsg.createdAt}} | {{dayText}}</span>
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   name: "SentMsg",
   props: {
-    msg: String
+    msg: {
+      type: Object,
+      default: {
+        text: '',
+        time: ''
+      }
+    }
   },
   data() {
     return {
-      inputMsg: ''
+      inputMsg: {
+        msg: '',
+        createdAt: ''
+      },
+      dayText: ''
     }
   },
   mounted() {
-    this.inputMsg += this.msg;
+    this.inputMsg.msg += this.msg.text;
+    this.inputMsg.createdAt += this.getDtFormat(this.msg.time, 'hour');
+
+    this.getDayText();
   },
   methods: {
+    getDayText() {
+      if(moment().diff(moment(this.msg.time), 'days') === 0) {
+        this.dayText = 'Today';
+      } else if(moment().diff(moment(this.msg.time), 'days') === 1) {
+        this.dayText = '1 day ago'
+      } else {
+        this.dayText = moment(this.msg.time).format('MM-DD');
+      }
+    }
   }
 }
 </script>

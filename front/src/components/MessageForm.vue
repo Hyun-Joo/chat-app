@@ -6,7 +6,7 @@
              class="write_msg"
              placeholder="Type a message"
              @keydown="sendChat"
-             v-model="message"
+             v-model="message.text"
       />
       <button type="button" id="chat-outgoing-btn" class="msg_send_btn" @click="sendChat">
         <i class="fa fa-paper-plane" aria-hidden="true" />
@@ -20,7 +20,9 @@ export default {
   name: "MessageForm",
   data() {
     return {
-      message: ''
+      message: {
+        text: ''
+      }
     }
   },
   methods: {
@@ -28,6 +30,7 @@ export default {
       if(e.keyCode === 13 || e.type === 'click') {
         let $input = document.querySelector('#chat-outgoing-msg');
         if($input.value.trim() === ''){
+          $input.value = '';
           return false;
         }
         this.$emit('sendChat', this.message);
