@@ -60,9 +60,7 @@ export default {
   },
   mounted() {},
   methods: {
-    sendChat(msg) {
-      this.msgs.push(msg);
-    }
+    sendChat(msg) {}
   }
 }
 </script>
@@ -71,16 +69,16 @@ export default {
 body {
   height: 100%;
 }
-.user {
-  border-bottom: 1px solid #716d6d;
-  padding: 10px;
-  width: 95%;
-}
-.user_data {
-  background-color: #f8f9fa!important;
-  border-top: 5px solid #716d6d;
-  max-height: calc(100vh);
-}
+/*.user {*/
+/*  border-bottom: 1px solid #716d6d;*/
+/*  padding: 10px;*/
+/*  width: 95%;*/
+/*}*/
+/*.user_data {*/
+/*  background-color: #f8f9fa!important;*/
+/*  border-top: 5px solid #716d6d;*/
+/*  max-height: calc(100vh);*/
+/*}*/
 .user a:hover {
   text-decoration: none;
   color: #212529;
@@ -98,10 +96,10 @@ body {
 .chat_section {
   padding-top: 15px;
 }
-.incoming_msg_img {
-  display: inline-block;
-  width: 6%;
-}
+/*.incoming_msg_img {*/
+/*  display: inline-block;*/
+/*  width: 6%;*/
+/*}*/
 .received_msg {
   display: inline-block;
   padding: 0 0 0 10px;
@@ -124,10 +122,10 @@ body {
   font-size: 10px;
   margin: 8px 0 0;
 }
-.mesgs {
-  float: left;
-  padding: 30px 15px 0 25px;
-}
+/*.mesgs {*/
+/*  float: left;*/
+/*  padding: 30px 15px 0 25px;*/
+/*}*/
 
 .sent_msg p {
   background: #040f8f none repeat scroll 0 0;
@@ -148,11 +146,11 @@ body {
   padding: 10px;
 }
 
-.messaging {
-  padding: 0 0 50px 0;
-}
-.msg_history {
-  height: 516px;
-  overflow-y: auto;
-}
+/*.messaging {*/
+/*  padding: 0 0 50px 0;*/
+/*}*/
+/*.msg_history {*/
+/*  height: 516px;*/
+/*  overflow-y: auto;*/
+/*}*/
 </style>

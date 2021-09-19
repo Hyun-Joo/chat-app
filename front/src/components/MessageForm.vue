@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "MessageForm",
   data() {
@@ -26,13 +28,29 @@ export default {
     }
   },
   methods: {
-    sendChat(e) {
+    async sendChat(e) {
       if(e.keyCode === 13 || e.type === 'click') {
         let $input = document.querySelector('#chat-outgoing-msg');
         if($input.value.trim() === ''){
           $input.value = '';
           return false;
         }
+
+        const res = await axios({
+          method: 'post',
+          url: '/chat',
+          data: {
+            sender: 'hyunjoo',
+            receiver: 'joveticeight',
+            msg: this.message.text
+          },
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            withCredentials: true
+          }
+        });
+        console.log(res);
+
         this.$emit('sendChat', this.message);
         $input.value = '';
       }
